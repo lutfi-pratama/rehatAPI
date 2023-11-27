@@ -1,10 +1,13 @@
 const db = require('../models');
 const { uploadImage } = require('../helpers/helpers');
+
 const User = db.user;
-const sequelize = db.sequelize;
+const { sequelize } = db;
 const { QueryTypes } = require('sequelize');
+
 const Analysis = db.analysis;
 const axios = require('axios');
+
 const { Op } = db.Sequelize;
 
 const pdfService = require('../helpers/buildPdf');
@@ -58,7 +61,7 @@ exports.editProfile = async (req, res) => {
   try {
     const id = req.body.userId;
     const name = req.body.username;
-    const file = req.file;
+    const { file } = req;
 
     // todo: If user upload new image
     if (file !== undefined) {
@@ -77,7 +80,7 @@ exports.editProfile = async (req, res) => {
           image: imageUrl,
         },
         {
-          where: { id: id },
+          where: { id },
         }
       );
 
@@ -93,7 +96,7 @@ exports.editProfile = async (req, res) => {
         username: name,
       },
       {
-        where: { id: id },
+        where: { id },
       }
     );
 
@@ -163,11 +166,11 @@ exports.getAnalysisInWeek = async (req, res) => {
 // Get Analysis by [idAnalysis]
 exports.getAnalysisById = async (req, res) => {
   try {
-    const id = req.params.id;
+    const { id } = req.params;
 
     const analysis = await Analysis.findOne({
       where: {
-        id: id,
+        id,
       },
     });
 
@@ -250,7 +253,7 @@ exports.getPrediction = async (req, res) => {
     else eyelidCondition = 'tired eyelid';
 
     // Final Calculation
-    let finalCondition = {
+    const finalCondition = {
       probability:
         (predictResponse.prob_eyebag + predictResponse.prob_eyelid) / 2,
     };
@@ -293,7 +296,7 @@ exports.getPrediction = async (req, res) => {
 
     return res.status(200).send({
       message: 'Prediction success',
-      prediction: prediction,
+      prediction,
       imageUrl,
       rescode: '200',
     });

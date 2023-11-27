@@ -1,7 +1,7 @@
-const jwt_decode = require('jwt-decode');
+const jwtDecode = require('jwt-decode');
 
 exports.decodeJWT = (token) => {
-  const decode = jwt_decode(token);
+  const decode = jwtDecode(token);
 
   return decode;
 };

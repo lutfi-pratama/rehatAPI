@@ -1,4 +1,4 @@
-const { verifySignUp } = require('../middleware');
+const { verifySignUp, formatResponse } = require('../middleware');
 const controller = require('../controllers/auth.controller');
 
 module.exports = function (app) {
@@ -7,22 +7,23 @@ module.exports = function (app) {
     next();
   });
 
-  app.post(
-    '/api/auth/signup',
-    [
-      verifySignUp.checkDuplicateUsernameOrEmail,
-      // verifySignUp.checkRolesExisted,
-    ],
-    controller.signup
-  );
+  // app.post(
+  //   '/api/auth/signup',
+  //   [
+  //     verifySignUp.checkDuplicateUsernameOrEmail,
+  //     // verifySignUp.checkRolesExisted,
+  //   ],
+  //   controller.signup
+  // );
 
-  app.post('/api/auth/signin', controller.signin);
+  app.post('/api/auth/login', controller.login);
+  app.post('/api/auth/pin', controller.loginPIN);
 
-  app.get('/api/auth/signout', controller.signout);
+  // app.get('/api/auth/logout', controller.signout);
 
-  // Change Password
-  app.post('/api/auth/reset-password-email', controller.resetPassword);
+  // // Change Password
+  // app.post('/api/auth/reset-password-email', controller.resetPassword);
 
-  // Update Password
-  app.post('/api/auth/update-password', controller.updatePassword);
+  // // Update Password
+  // app.post('/api/auth/update-password', controller.updatePassword);
 };

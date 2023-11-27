@@ -17,13 +17,10 @@ exports.sendEmail = async (email, token) => {
     from: 'pratamalutfi6060@gmail.com',
     to: userEmail,
     subject: 'Reset Password Link - Rehat App',
-    html:
-      '<h3>Link untuk ganti password</h3><br><p>Permintaan kamu terpenuhi, klik link berikut untuk mengubah password <a href="http://localhost:4000/reset-password?token=' +
-      userToken +
-      '">link</a> reset password-mu!</p><br><b>Jangan bagikan link tersebut ke publik</b>',
+    html: `<h3>Link untuk ganti password</h3><br><p>Permintaan kamu terpenuhi, klik link berikut untuk mengubah password <a href="http://localhost:4000/reset-password?token=${userToken}">link</a> reset password-mu!</p><br><b>Jangan bagikan link tersebut ke publik</b>`,
   };
 
-  await mail.sendMail(mailOptions, function (error, info) {
+  await mail.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
     } else {

@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config.js');
 const decode = require('../helpers/decode.js');
 const db = require('../models');
-const sequelize = db.sequelize;
+
+const { sequelize } = db;
 const { QueryTypes } = require('sequelize');
 
 const User = db.user;

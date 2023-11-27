@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
-const config = require('../config/db.config.js');
+const config = require('../config/db.config');
 
-// Create Sequelize instance
 const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   host: config.HOST,
   dialect: config.dialect,
@@ -15,20 +14,18 @@ const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
 });
 
 const db = {};
-// Use Sequelize library
 db.Sequelize = Sequelize;
 
 db.sequelize = sequelize;
-db.user = require('./user.model.js')(sequelize, Sequelize);
-db.analysis = require('./analysis.model.js')(sequelize, Sequelize);
-db.role = require('../models/role.model.js')(sequelize, Sequelize);
-db.community = require('../models/community.model.js')(sequelize, Sequelize);
-db.agenda = require('../models/agenda.model.js')(sequelize, Sequelize);
-db.user_agenda_ref = require('../models/user_agenda_ref.model.js')(
-  sequelize,
-  Sequelize
-);
-db.color = require('../models/color.model.js')(sequelize, Sequelize);
+// AUTH
+db.AppUser = require('./Auth/app-user.model')(sequelize, Sequelize);
+// ORDER
+db.MenuItem = require('./Order/menu-items')(sequelize, Sequelize);
+db.MstChef = require('./Order/mst-chef')(sequelize, Sequelize);
+// db.analysis = require('./analysis.model')(sequelize, Sequelize);
+// db.role = require('./role.model')(sequelize, Sequelize);
+// db.community = require('./community.model')(sequelize, Sequelize);
+// db.color = require('./color.model')(sequelize, Sequelize);
 // db.role.belongsToMany(db.user, {
 //   through: "user_roles",
 //   foreignKey: "roleId",

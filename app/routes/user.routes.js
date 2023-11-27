@@ -7,13 +7,12 @@ module.exports = function (app) {
     next();
   });
 
-  // To access public content, no verify JWT
   app.get('/api/test/all', controller.allAccess);
 
   // To access user content
   app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
 
-  //? For Admin (optional)
+  // ? For Admin (optional)
   // app.get(
   //   '/api/test/admin',
   //   [authJwt.verifyToken, authJwt.isAdmin],
@@ -47,7 +46,7 @@ module.exports = function (app) {
     controller.getAnalysisById
   );
 
-  //todo: Predict
+  // todo: Predict
   app.post('/api/predict', [authJwt.verifyToken], controller.getPrediction);
 
   // Generate to PDF

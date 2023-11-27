@@ -1,4 +1,5 @@
 const env = require('dotenv');
+
 env.config();
 
 module.exports = {
@@ -6,7 +7,8 @@ module.exports = {
   USER: process.env.DB_USER,
   PASSWORD: process.env.DB_PASSWORD || '',
   DB: process.env.DB_DATABASE,
-  dialect: 'mysql',
+  dialect: 'mssql',
+  operatorsAliases: false,
   pool: {
     max: 5,
     min: 0,
