@@ -20,6 +20,7 @@ db.sequelize = sequelize;
 // AUTH
 db.AppUser = require('./Auth/app-user.model')(sequelize, Sequelize);
 // ORDER
+db.MenuPage = require('./Order/menu-page')(sequelize, Sequelize);
 db.MenuItem = require('./Order/menu-items')(sequelize, Sequelize);
 db.MstChef = require('./Order/mst-chef')(sequelize, Sequelize);
 // db.analysis = require('./analysis.model')(sequelize, Sequelize);

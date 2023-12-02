@@ -30,3 +30,24 @@ exports.postMstChef = async (req, res) => {
     return res.status(500).send({ message: error.message });
   }
 };
+
+exports.getOrdersItem = async (req, res) => {
+  // page menu
+
+  // menu item
+
+  const { id } = req.query;
+  try {
+    const ordersItem = await MenuItem.findAll({
+      where: {
+        id,
+      },
+    });
+    return res.status(200).send({
+      rescode: 200,
+      data: ordersItem,
+    });
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+};

@@ -7,19 +7,10 @@ module.exports = function (app) {
     next();
   });
 
-  // app.post(
-  //   '/api/auth/signup',
-  //   [
-  //     verifySignUp.checkDuplicateUsernameOrEmail,
-  //     // verifySignUp.checkRolesExisted,
-  //   ],
-  //   controller.signup
-  // );
-
   app.post('/api/auth/login', controller.login);
   app.post('/api/auth/pin', controller.loginPIN);
 
-  // app.get('/api/auth/logout', controller.signout);
+  app.get('/api/auth/logout', controller.logout);
 
   // // Change Password
   // app.post('/api/auth/reset-password-email', controller.resetPassword);
