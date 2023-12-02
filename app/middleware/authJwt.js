@@ -1,11 +1,8 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.config');
-const db = require('../models');
-
-const { sequelize } = db;
 
 const verifyToken = (req, res, next) => {
-  const { token } = req.session;
+  const token = req.headers.authorization.split(' ')[1];
 
   if (!token) {
     return res.status(403).send({
@@ -21,8 +18,6 @@ const verifyToken = (req, res, next) => {
         message: 'Unauthorized!',
       });
     }
-    // get JWT id after decode
-    // req.userId = decoded.id;
     next();
     return null;
   });

@@ -1,15 +1,10 @@
-const { Sequelize } = require('sequelize');
+const { trimSeq } = require('../helpers/sequelize');
 const db = require('../models');
 
 const { MenuItems, MenuPages, TenderMedia, Discounts, PromoByDepart, MstChef } =
   db;
 
-const trimSeq = (colName) => [
-  Sequelize.fn('trim', Sequelize.col(colName)),
-  colName,
-];
-
-exports.getMenuItems = async (req, res) => {
+exports.getOrdersData = async (req, res) => {
   const menuItems = await MenuItems.findAll({
     attributes: [
       ...Object.keys(MenuItems.rawAttributes),

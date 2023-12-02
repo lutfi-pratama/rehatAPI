@@ -19,6 +19,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 // AUTH
 db.AppUser = require('./Auth/app-user.model')(sequelize, Sequelize);
+
 // ORDER
 db.MenuPages = require('./Order/menu-pages')(sequelize, Sequelize);
 db.MenuItems = require('./Order/menu-items')(sequelize, Sequelize);
@@ -27,6 +28,13 @@ db.PromoByDepart = require('./Order/promo-by-depart')(sequelize, Sequelize);
 
 // PAYMENT
 db.TenderMedia = require('./Payment/tender-media')(sequelize, Sequelize);
+
+// SYSTEM
+db.DineInTables = require('./System/dine-in-tables')(sequelize, Sequelize);
+db.DineInTableGroups = require('./System/dine-in-table-groups')(
+  sequelize,
+  Sequelize
+);
 
 db.MstChef = require('./Order/mst-chef')(sequelize, Sequelize);
 // db.analysis = require('./analysis.model')(sequelize, Sequelize);

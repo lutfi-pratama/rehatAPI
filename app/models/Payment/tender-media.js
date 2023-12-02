@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
   const TenderMediaObj = {
     SettleCode: {
-      type: Sequelize.STRING(5), // Mengasumsikan 5 karakter untuk SettleCode
+      type: Sequelize.STRING(5),
       allowNull: false,
       primaryKey: true,
     },
     TenderName: {
-      type: Sequelize.STRING(30), // Mengasumsikan 30 karakter untuk TenderName
+      type: Sequelize.STRING(30),
       allowNull: false,
     },
     PaidType: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     TenderPicture: {
-      type: Sequelize.STRING(100), // Mengasumsikan 100 karakter untuk TenderPicture
+      type: Sequelize.STRING(100),
       allowNull: false,
     },
     Mno: {
@@ -26,7 +26,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     CustCode: {
-      type: Sequelize.STRING(15), // Mengasumsikan 15 karakter untuk CustCode
+      type: Sequelize.STRING(15),
       allowNull: false,
     },
     CrLimit: {
@@ -38,7 +38,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     GlAcctNo: {
-      type: Sequelize.STRING(15), // Mengasumsikan 15 karakter untuk GlAcctNo
+      type: Sequelize.STRING(15),
       allowNull: false,
     },
   };
