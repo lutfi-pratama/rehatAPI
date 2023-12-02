@@ -2,20 +2,17 @@ module.exports = (sequelize, Sequelize) => {
   const DineInTableGroupsObj = {
     TableGroupID: {
       type: Sequelize.STRING(1),
-      allowNull: false,
       primaryKey: true,
+      allowNull: false,
     },
     TableGroupName: {
       type: Sequelize.STRING(30),
-      allowNull: false,
     },
     ReveGroup: {
       type: Sequelize.INTEGER,
-      allowNull: false,
     },
     BgrPicture: {
       type: Sequelize.STRING(200),
-      allowNull: false,
     },
   };
 

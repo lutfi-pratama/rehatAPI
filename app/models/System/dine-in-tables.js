@@ -7,35 +7,27 @@ module.exports = (sequelize, Sequelize) => {
     },
     TableNo: {
       type: Sequelize.STRING(5),
-      allowNull: false,
     },
     TotalSeat: {
       type: Sequelize.INTEGER,
-      allowNull: false,
     },
     TableGroupID: {
       type: Sequelize.STRING(1),
-      allowNull: false,
     },
     PictureName: {
       type: Sequelize.STRING(200),
-      allowNull: false,
     },
     xLeft: {
       type: Sequelize.INTEGER,
-      allowNull: false,
     },
     xTop: {
       type: Sequelize.INTEGER,
-      allowNull: false,
     },
     xHeight: {
       type: Sequelize.INTEGER,
-      allowNull: false,
     },
     xWidth: {
       type: Sequelize.INTEGER,
-      allowNull: false,
     },
   };
 
