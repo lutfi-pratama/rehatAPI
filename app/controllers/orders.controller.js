@@ -1,4 +1,5 @@
-const { trimSeq } = require('../helpers/sequelize');
+const lodash = require('lodash');
+const { trimSeq, toCamelCase } = require('../helpers/sequelize');
 const db = require('../models');
 
 const { MenuItems, MenuPages, TenderMedia, Discounts, PromoByDepart, MstChef } =
@@ -7,45 +8,63 @@ const { MenuItems, MenuPages, TenderMedia, Discounts, PromoByDepart, MstChef } =
 exports.getOrdersData = async (req, res) => {
   const menuItems = await MenuItems.findAll({
     attributes: [
-      ...Object.keys(MenuItems.rawAttributes),
-      trimSeq('MenuName'),
-      trimSeq('UpcBarcode'),
-      trimSeq('CateCode'),
+      ...Object.keys(MenuItems.rawAttributes).map((key) => [
+        key,
+        lodash.camelCase(key),
+      ]),
+      [trimSeq('MenuName'), 'menuName'],
+      [trimSeq('UpcBarcode'), 'upcBarcode'],
+      [trimSeq('CateCode'), 'cateCode'],
     ],
   });
 
   const menuPages = await MenuPages.findAll({
     attributes: [
-      ...Object.keys(MenuPages.rawAttributes),
-      trimSeq('MenuCode'),
-      trimSeq('PageName'),
-      trimSeq('TitlePages'),
+      ...Object.keys(MenuPages.rawAttributes).map((key) => [
+        key,
+        lodash.camelCase(key),
+      ]),
+      [trimSeq('MenuCode'), 'menuCode'],
+      [trimSeq('PageName'), 'pageName'],
+      [trimSeq('TitlePages'), 'titlePages'],
     ],
   });
 
   const tenderMedia = await TenderMedia.findAll({
     attributes: [
-      ...Object.keys(TenderMedia.rawAttributes),
-      trimSeq('SettleCode'),
-      trimSeq('TenderName'),
-      trimSeq('TenderPicture'),
+      ...Object.keys(TenderMedia.rawAttributes).map((key) => [
+        key,
+        lodash.camelCase(key),
+      ]),
+      [trimSeq('SettleCode'), 'settleCode'],
+      [trimSeq('TenderName'), 'tenderName'],
+      [trimSeq('TenderPicture'), 'tenderPicture'],
     ],
   });
 
   const discount = await Discounts.findAll({
-    attributes: [...Object.keys(Discounts.rawAttributes), trimSeq('DiscCode')],
+    attributes: [
+      ...Object.keys(Discounts.rawAttributes).map((key) => [
+        key,
+        lodash.camelCase(key),
+      ]),
+      [trimSeq('DiscCode'), 'discCode'],
+    ],
   });
 
   const promoByDepart = await PromoByDepart.findAll({
     attributes: [
-      ...Object.keys(PromoByDepart.rawAttributes),
-      trimSeq('PromoCode'),
+      ...Object.keys(PromoByDepart.rawAttributes).map((key) => [
+        key,
+        lodash.camelCase(key),
+      ]),
+      [trimSeq('PromoCode'), 'promoCode'],
     ],
   });
 
   try {
     return res.status(200).send({
-      rescode: 200,
+      status: 200,
       data: {
         item: menuItems,
         page: menuPages,
@@ -67,7 +86,7 @@ exports.postMstChef = async (req, res) => {
       ChefName: chefName,
     });
     return res.status(200).send({
-      rescode: 200,
+      status: 200,
       data: chef,
     });
   } catch (error) {
@@ -88,7 +107,7 @@ exports.getOrdersItem = async (req, res) => {
       },
     });
     return res.status(200).send({
-      rescode: 200,
+      status: 200,
       data: ordersItem,
     });
   } catch (error) {

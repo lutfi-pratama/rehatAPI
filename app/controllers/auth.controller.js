@@ -16,7 +16,7 @@ exports.login = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .send({ message: 'User Not found.', rescode: '404' });
+        .send({ message: 'User Not found.', status: '404' });
     }
     // Checking User Password from DB
     // const passwordIsValid = bcrypt.compareSync(
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
     // if (!passwordIsValid) {
     //   return res.status(401).send({
     //     message: 'Invalid Password!',
-    //     rescode: '401',
+    //     status: '401',
     //   });
     // }
 
@@ -55,7 +55,7 @@ exports.loginPIN = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .send({ message: 'User Not found.', rescode: '404' });
+        .send({ message: 'User Not found.', status: '404' });
     }
 
     const token = jwt.sign({ id: user.USER_ID }, config.secret, {

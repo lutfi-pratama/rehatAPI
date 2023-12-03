@@ -6,7 +6,7 @@ const verifyToken = (req, res, next) => {
 
   if (!token) {
     return res.status(403).send({
-      rescode: 403,
+      status: 403,
       message: 'No token provided!',
     });
   }
@@ -14,7 +14,7 @@ const verifyToken = (req, res, next) => {
   jwt.verify(token, authConfig.secret, (err) => {
     if (err) {
       return res.status(401).send({
-        rescode: 401,
+        status: 401,
         message: 'Unauthorized!',
       });
     }
