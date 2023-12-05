@@ -98,3 +98,48 @@ exports.getDineInTable = async (req, res) => {
     return res.status(500).send({ status: 500, message: error.message });
   }
 };
+
+exports.putDineInTable = async (req, res) => {
+  const tableID = req.params.id;
+  const { tableName, totalSeat, x, y } = req.body;
+
+  try {
+    await DineInTables.update(
+      {
+        TableNo: tableName,
+        TotalSeat: totalSeat,
+        xLeft: x,
+        xTop: y,
+      },
+      {
+        where: {
+          TableKey: tableID,
+        },
+      }
+    );
+
+    return res.status(200).send({
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(500).send({ status: 500, message: error.message });
+  }
+};
+
+exports.deleteDineInTable = async (req, res) => {
+  const tableID = req.params.id;
+
+  try {
+    await DineInTables.destroy({
+      where: {
+        TableKey: tableID,
+      },
+    });
+
+    return res.status(200).send({
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(500).send({ status: 500, message: error.message });
+  }
+};

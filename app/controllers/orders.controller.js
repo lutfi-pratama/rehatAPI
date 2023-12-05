@@ -67,7 +67,7 @@ exports.getOrdersData = async (req, res) => {
       status: 200,
       data: {
         item: menuItems,
-        page: menuPages,
+        pageMenu: menuPages,
         tenderMedia,
         discount,
         promoByDepart,

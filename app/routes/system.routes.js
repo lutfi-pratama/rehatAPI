@@ -23,4 +23,16 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.getDineInTableGroup
   );
+
+  app.put(
+    '/api/dinein/tables/:id',
+    [authJwt.verifyToken],
+    controller.putDineInTable
+  );
+
+  app.delete(
+    '/api/dinein/tables/:id',
+    [authJwt.verifyToken],
+    controller.deleteDineInTable
+  );
 };
